@@ -3,7 +3,7 @@ import { BuilderComponent, useIsPreviewing } from "@builder.io/react";
 import { BuilderContent, builder } from "@builder.io/sdk";
 import DefaultErrorPage from "next/error";
 
-builder.init("332318a4394a440e8302ceeaa373f90c");
+builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY ?? "");
 
 interface BuilderPageProps {
   content?: BuilderContent;

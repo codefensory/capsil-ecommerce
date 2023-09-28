@@ -1,5 +1,5 @@
 import { builder as builderio } from "@builder.io/sdk";
 
-builderio.init("332318a4394a440e8302ceeaa373f90c");
+builderio.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY ?? "");
 
 export default builderio;
