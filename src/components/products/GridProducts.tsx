@@ -1,31 +1,23 @@
 "use client";
-import { Product } from "~/lib/shopify";
-import { productsAtom } from "~/lib/shopify/atoms";
-import { FC } from "react";
-import { useHydrateAtoms } from "jotai/utils";
-import { CardProduct } from "./ProductHomeCard";
 import { useAtomValue } from "jotai";
+import { FC } from "react";
+import { productsAtom } from "~/lib/shopify/atoms";
+import { CardProduct } from "./ProductHomeCard";
 
-type GridProductsProps = {
-  products: Product[];
+type Props = {
+  title: string;
+  smallTitle: string;
 };
 
-export const GridProducts: FC<GridProductsProps> = ({
-  products: productsFromServer,
-}) => {
-  useHydrateAtoms([[productsAtom, productsFromServer]]);
-
+export const GridProducts: FC<Props> = ({ title, smallTitle }) => {
   const products = useAtomValue(productsAtom);
-
   return (
     <div className="text-black py-8 max-w-7xl mx-auto">
       <div className="text-center">
-        <h2 className="text-xl">Nuestra selección de cafés de alta calidad</h2>
-        <h3 className="text-5xl font-semibold">
-          Todos nuestros cafés cuentan su propia historia
-        </h3>
+        <h3 className="text-xl">{smallTitle}</h3>
+        <h2 className="text-5xl font-semibold">{title}</h2>
       </div>
-      <div className="grid mt-5 place-content-center grid-cols-3 max-w-7xl m-auto">
+      <div className="grid mt-5  grid-cols-3 max-w-7xl m-auto">
         {products.map((pr) => (
           <CardProduct product={pr} />
         ))}
@@ -33,3 +25,5 @@ export const GridProducts: FC<GridProductsProps> = ({
     </div>
   );
 };
+
+export default GridProducts;
