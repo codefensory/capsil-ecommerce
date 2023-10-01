@@ -26,7 +26,7 @@ export default async function RootLayout({
         />
       </head>
       <body>
-        <div className="bg-capsil-bg font-cormorat">{children}</div>
+        <div className="bg-capsil-bg font-cormorat text-black">{children}</div>
       </body>
     </html>
   );
