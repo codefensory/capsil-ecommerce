@@ -1,30 +1,6 @@
 import { BuilderBlockComponent, BuilderElement } from "@builder.io/react";
-import cx from "classnames";
 import NextImage from "next/image";
 import { FC, ReactNode } from "react";
-
-type ButtonProps = {
-  className?: string;
-  variant?: "primary" | "secondary";
-  children?: React.ReactNode;
-};
-const Button: FC<ButtonProps> = ({ className, variant, children }) => {
-  return (
-    <button
-      className={cx(className, {
-        "bg-capsil-green border-capsil-green border-2 text-white px-6 py-2":
-          variant === "primary",
-        "border-capsil-green border-2 px-6 py-2": variant === "secondary",
-      })}
-    >
-      <span>{children}</span>
-    </button>
-  );
-};
-
-Button.defaultProps = {
-  variant: "primary",
-};
 
 type HeroHomeProps = {
   title: string;
