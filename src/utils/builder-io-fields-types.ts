@@ -23,6 +23,8 @@ export enum BuilderInputType {
   VARIANT = "variant",
   COLLECTION = "collection",
   PAGE = "page",
+  ELEMENT = "@builder.io/sdk:Element",
+  UI_BLOCKS = "uiBlocks",
 }
 
 /**

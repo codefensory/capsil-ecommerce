@@ -23,6 +23,7 @@ const config: Config = {
       colors: {
         capsil: {
           bg: "#F7F5E8",
+          green: "#89B964",
         },
       },
     },
