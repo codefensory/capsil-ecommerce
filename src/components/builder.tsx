@@ -13,9 +13,6 @@ interface BuilderPageProps {
 export function RenderBuilderContent({ content }: BuilderPageProps) {
   const isPreviewing = useIsPreviewing();
 
-  console.log("content", {
-    content,
-  });
   if (content || isPreviewing) {
     return <BuilderComponent content={content} model="page" />;
   }
