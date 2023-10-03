@@ -1,3 +1,5 @@
+"use client";
+
 import { BuilderBlockComponent, BuilderElement } from "@builder.io/react";
 import NextImage from "next/image";
 import { FC, ReactNode } from "react";
