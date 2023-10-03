@@ -120,3 +120,13 @@ Builder.registerComponent(HeroHome, {
   ],
   defaultChildren: defaultBlocks as any,
 });
+
+Builder.registerComponent(
+  dinamyc(() => import("./components/DeliveryInfo")),
+  { name: "DeliveryInfo" }
+);
+
+Builder.registerComponent(
+  dinamyc(() => import("./components/AboutCoffeInfo")),
+  { name: "AboutCoffeInfo" }
+);
