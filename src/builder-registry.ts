@@ -130,3 +130,7 @@ Builder.registerComponent(
   dinamyc(() => import("./components/AboutCoffeInfo")),
   { name: "AboutCoffeInfo" }
 );
+Builder.registerComponent(
+  dinamyc(() => import("./components/footer/MainFooter")),
+  { name: "MainFooter" }
+);

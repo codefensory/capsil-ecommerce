@@ -24,6 +24,8 @@ const config: Config = {
         capsil: {
           bg: "#F7F5E8",
           green: "#89B964",
+          brown: "#341A19",
+          gold: "#B98D58"
         },
       },
     },
