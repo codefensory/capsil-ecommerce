@@ -4,6 +4,10 @@ import NextImage from "next/image";
 import { Minus, Plus, Dots, Close } from "~/components/icons";
 import { Button } from "~/components/button";
 import csx from "classnames";
+import { checkoutAtom } from "~/libs/shopify";
+import { useAtomValue } from "jotai";
+import { MAP_CURREMCY } from "../../constants";
+import { FC, ReactNode } from "react";
 
 const UnitsInput = () => {
   return (
@@ -25,19 +29,17 @@ const UnitsInput = () => {
   );
 };
 
-const CartItem = () => {
+type CartItemProps = {
+  image: ReactNode;
+  quantity?: number;
+  price?: string;
+  onChageQuantity?: (quantity: number) => void;
+};
+const CartItem: FC<CartItemProps> = ({ image, quantity }) => {
   return (
     <div className="min-w-max py-3  px-1">
       <div className="flex pb-2">
-        <div className="border-2 bg-gray-200 rounded-md">
-          <NextImage
-            className="p-2"
-            src={"/cafe1.png"}
-            width={50}
-            height={50}
-            alt=""
-          />
-        </div>
+        <div className="border-2 bg-gray-200 rounded-md">{image}</div>
         <div className="mt-2 px-3">
           <p className="max-w-xs font-dmSans font-normal text-sm">
             T-shirts with multiple colors for men
@@ -57,7 +59,28 @@ const CartItem = () => {
 
 export const Cart = () => {
   const cartState = useCartStateAtom();
+  const checkout = useAtomValue(checkoutAtom);
+
   if (!cartState.isOpen) return null;
+
+  const items = checkout?.lineItems ?? [];
+
+  const itemsCount = checkout?.lineItems.reduce((prev, curr) => {
+    return prev + curr.quantity;
+  }, 0);
+
+  const subTotalPrice = checkout?.lineItemsSubtotalPrice
+    ? MAP_CURREMCY.get(checkout?.lineItemsSubtotalPrice?.currencyCode) +
+      " " +
+      checkout?.lineItemsSubtotalPrice?.amount
+    : "";
+
+  const totalPrice = checkout?.totalPrice
+    ? MAP_CURREMCY.get(checkout?.totalPrice?.currencyCode) +
+      " " +
+      checkout?.totalPrice?.amount
+    : "";
+
   return (
     <div className={csx("drawer fixed top-0 drawer-end drawer-open  z-50")}>
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
@@ -76,15 +99,28 @@ export const Cart = () => {
               Shopping cart
             </h3>
             <div className="max-h-[500px] overflow-y-auto overflow-x-hidden h-[500px] px-2   border-black">
-              {Array.from({ length: 3 }).map((_, idx) => {
-                return <CartItem key={idx} />;
+              {items.map((item, idx) => {
+                return (
+                  <CartItem
+                    key={idx}
+                    image={
+                      <NextImage
+                        className="p-2"
+                        src={item.variant?.image.src ?? ""}
+                        width={50}
+                        height={50}
+                        alt=""
+                      />
+                    }
+                  />
+                );
               })}
             </div>
           </div>
           <div className="flex font-dmSans text-sm gap-y-2 absolute   px-4 left-0 top-[78%]  mt-4 flex-col w-full">
             <div className="flex justify-between">
-              <p>Items (3):</p>
-              <p className="font-semibold">$32</p>
+              <p>Items ({itemsCount}):</p>
+              <p className="font-semibold">{subTotalPrice}</p>
             </div>
             <div className="flex justify-between">
               <p>Shipping:</p>
@@ -92,7 +128,7 @@ export const Cart = () => {
             </div>
             <div className="flex justify-between">
               <p>Total:</p>
-              <p className="font-black">$220.00</p>
+              <p className="font-black">{totalPrice}</p>
             </div>
             <Button text={"Comprar"} />
           </div>

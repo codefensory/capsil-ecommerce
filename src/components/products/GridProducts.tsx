@@ -1,7 +1,7 @@
 "use client";
 import { useAtomValue } from "jotai";
 import { FC } from "react";
-import { productsAtom } from "~/lib/shopify/atoms";
+import { productsAtom } from "~/libs/shopify/atoms";
 import { CardProduct } from "./ProductHomeCard";
 
 type Props = {

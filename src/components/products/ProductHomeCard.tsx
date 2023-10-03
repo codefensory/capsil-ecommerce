@@ -1,20 +1,22 @@
 import NextImage from "next/image";
 import { FC } from "react";
-import { Product } from "~/lib/shopify";
+import { Product } from "~/libs/shopify";
+import { addVariantToCartAtom } from "~/libs/shopify/atoms";
 import { useHover } from "@uidotdev/usehooks";
 import { EyeIcon, BagIcon } from "~/components/icons";
-const MAP_CURREMCY = new Map([
-  ["USD", "$"],
-  ["PEN", "S/."],
-]);
+import { useAtom } from "jotai";
+import { MAP_CURREMCY } from "../../constants";
 
 export const CardProduct: FC<{
   product: Product;
 }> = ({ product }) => {
   const image = product.images?.[0];
   const [ref, hovering] = useHover();
-  const rawPrice = product.variants[0].price;
-  const priceToCompare = product.variants[0].compareAtPrice;
+  const variant = product.variants[0];
+  const rawPrice = variant.price;
+  const priceToCompare = variant.compareAtPrice;
+
+  const [, addToCart] = useAtom(addVariantToCartAtom);
 
   const resolvePrice = (price: number) => {
     return `${MAP_CURREMCY.get(rawPrice.currencyCode)}${price}`;
@@ -30,9 +32,17 @@ export const CardProduct: FC<{
           <div className="wrap-icon">
             <EyeIcon />
           </div>
-          <div className="wrap-icon">
+          <button
+            className="wrap-icon"
+            onClick={() => {
+              addToCart({
+                quantity: 1,
+                variantId: variant.id,
+              });
+            }}
+          >
             <BagIcon />
-          </div>
+          </button>
         </div>
       )}
       <div>

@@ -1,7 +1,7 @@
 "use client";
 import { useHydrateAtoms } from "jotai/utils";
 import { FC } from "react";
-import { Product, productsAtom } from "~/lib/shopify";
+import { Product, productsAtom } from "~/libs/shopify";
 
 type Props = {
   productsFromServer: Product[];
