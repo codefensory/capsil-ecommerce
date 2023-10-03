@@ -1,3 +1,4 @@
+"use client";
 import { AboutCoffeInfo } from "~/components/AboutCoffeInfo/AboutCoffeInfo";
 import { DeliveryInfo } from "~/components";
 

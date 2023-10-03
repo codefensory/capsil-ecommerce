@@ -1,13 +1,13 @@
 import cx from "classnames";
 import { FC } from "react";
-import { withChildren } from "@builder.io/react";
+
 type ButtonProps = {
   className?: string;
   variant?: "primary" | "secondary";
   children?: React.ReactNode;
   text: string;
 };
-const Button: FC<ButtonProps> = ({ className, variant, children, text }) => {
+export const Button: FC<ButtonProps> = ({ className, variant, text }) => {
   return (
     <button
       className={cx(className, {
@@ -25,4 +25,4 @@ const Button: FC<ButtonProps> = ({ className, variant, children, text }) => {
 Button.defaultProps = {
   variant: "primary",
 };
-export default withChildren(Button);
+export default Button;

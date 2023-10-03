@@ -3,6 +3,7 @@ import builderio from "~/libs/builderio";
 import { getProducts } from "~/lib/shopify/eccomerce.sdk";
 import { JotaiHydratation } from "../components/JotaiHydratation";
 import "../builder-registry";
+import { Cart } from "~/components/cart";
 export default async function Home() {
   const page = await builderio
     .get("page", {
@@ -16,6 +17,7 @@ export default async function Home() {
 
   return (
     <>
+      <Cart />
       <JotaiHydratation productsFromServer={products} />
       <RenderBuilderContent content={page || undefined} />
     </>

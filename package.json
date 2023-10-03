@@ -15,6 +15,7 @@
     "@chakra-ui/utils": "^2.0.14",
     "@uidotdev/usehooks": "^2.3.1",
     "classnames": "^2.3.2",
+    "daisyui": "^3.8.2",
     "jotai": "^2.4.3",
     "next": "latest",
     "react": "latest",
