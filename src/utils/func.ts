@@ -1,4 +1,3 @@
-// make debounce function in typescript
 export const debounce = <T extends (...args: any[]) => any>(
   func: T,
   wait: number
