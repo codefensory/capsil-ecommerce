@@ -1,65 +1,27 @@
 "use client";
-import { useCartStateAtom } from "./atoms";
-import NextImage from "next/image";
-import { Minus, Plus, Dots, Close } from "~/components/icons";
-import { Button } from "~/components/button";
 import csx from "classnames";
-import { checkoutAtom } from "~/libs/shopify";
-import { useAtomValue } from "jotai";
+import { useAtomValue, useSetAtom } from "jotai";
+import NextImage from "next/image";
+import { CheckoutLineItem } from "shopify-buy";
+import { BaseButton } from "~/components/button";
+import { Close } from "~/components/icons";
+import {
+  checkoutAtom,
+  updateQuantityCartAtom,
+  removeALineFromCartAtom,
+} from "~/libs/shopify";
 import { MAP_CURREMCY } from "../../constants";
-import { FC, ReactNode } from "react";
-
-const UnitsInput = () => {
-  return (
-    <div className="flex border-2  h-8 border-gray-200  rounded-md justify-center">
-      <button className="border-r-2 text-gray-300 hover:bg-gray-200 border-l-gray-200  font-bold text-xl flex justify-center items-center">
-        <Minus className="w-4 h-4 mx-2" />
-      </button>
-      <div>
-        <input
-          type="text"
-          value={4}
-          className="bg-white focus:border-none focus:outline-none w-10 text-center"
-        />
-      </div>
-      <button className="border-l-2 text-gray-300 hover:bg-gray-200 border-l-gray-200  font-bold flex justify-center items-center">
-        <Plus className="w-4 h-4 mx-2" />
-      </button>
-    </div>
-  );
-};
-
-type CartItemProps = {
-  image: ReactNode;
-  quantity?: number;
-  price?: string;
-  onChageQuantity?: (quantity: number) => void;
-};
-const CartItem: FC<CartItemProps> = ({ image, quantity }) => {
-  return (
-    <div className="min-w-max py-3  px-1">
-      <div className="flex pb-2">
-        <div className="border-2 bg-gray-200 rounded-md">{image}</div>
-        <div className="mt-2 px-3">
-          <p className="max-w-xs font-dmSans font-normal text-sm">
-            T-shirts with multiple colors for men
-          </p>
-        </div>
-        <button className="w-4 text-gray-400 ">
-          <Dots className="w-5 h-5" />
-        </button>
-      </div>
-      <div className="flex justify-between  mt-2 w-full">
-        <UnitsInput />
-        <p className="font-semibold font-dmSans">$78.99</p>
-      </div>
-    </div>
-  );
-};
+import { UnitsInput } from "./UnitsInput";
+import { useCartStateAtom } from "./atoms";
+import { CartItem } from "./CartItem";
 
 export const Cart = () => {
   const cartState = useCartStateAtom();
   const checkout = useAtomValue(checkoutAtom);
+
+  const updateQuantity = useSetAtom(updateQuantityCartAtom);
+
+  const removeALineFromCart = useSetAtom(removeALineFromCartAtom);
 
   if (!cartState.isOpen) return null;
 
@@ -80,6 +42,16 @@ export const Cart = () => {
       " " +
       checkout?.totalPrice?.amount
     : "";
+
+  const priceItem = (item: CheckoutLineItem) => {
+    const amount = (Number(item.variant?.price.amount) ?? 0) * item.quantity;
+
+    return (
+      (MAP_CURREMCY.get(item.variant?.price?.currencyCode ?? "") ?? "") +
+      " " +
+      amount
+    );
+  };
 
   return (
     <div className={csx("drawer fixed top-0 drawer-end drawer-open  z-50")}>
@@ -102,7 +74,25 @@ export const Cart = () => {
               {items.map((item, idx) => {
                 return (
                   <CartItem
+                    headLine={item.title ?? ""}
                     key={idx}
+                    onDelete={() => {
+                      console.log("delete", item.id);
+
+                      removeALineFromCart(item.id);
+                    }}
+                    quantityNode={
+                      <UnitsInput
+                        value={item.quantity}
+                        updateQuantity={(quantity) =>
+                          updateQuantity({
+                            quantity: quantity,
+                            lineItemId: item.id,
+                          })
+                        }
+                      />
+                    }
+                    price={priceItem(item)}
                     image={
                       <NextImage
                         className="p-2"
@@ -122,15 +112,23 @@ export const Cart = () => {
               <p>Items ({itemsCount}):</p>
               <p className="font-semibold">{subTotalPrice}</p>
             </div>
-            <div className="flex justify-between">
+            {/* <div className="flex justify-between">
               <p>Shipping:</p>
               <p className="font-black">$32</p>
             </div>
+             */}
             <div className="flex justify-between">
               <p>Total:</p>
               <p className="font-black">{totalPrice}</p>
             </div>
-            <Button text={"Comprar"} />
+            <BaseButton
+              onClick={() => {
+                window.open(checkout?.webUrl ?? "");
+              }}
+            >
+              Comprar
+            </BaseButton>
+            <BaseButton variant="secondary">Venta por whatsApp</BaseButton>
           </div>
         </div>
       </div>
