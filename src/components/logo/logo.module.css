@@ -1,0 +1,10 @@
+.lg {
+    @apply w-[246px] h-[123px]
+}
+.md {
+    @apply w-[180px] h-[100px]
+}
+
+.sm {
+    @apply w-[120px] h-[60px]
+}

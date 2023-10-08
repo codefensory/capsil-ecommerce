@@ -1,8 +1,17 @@
 "use client";
 import { Builder } from "@builder.io/react";
-import { BuilderInputType } from "./utils";
-import dinamyc from "next/dynamic";
+import { default as dinamyc } from "next/dynamic";
 import { HeroHome } from "./components/hero/HeroHome";
+import { BuilderInputType } from "./utils";
+
+Builder.registerComponent(
+  dinamyc(() => import("./components/navbar/Navbar")),
+  {
+    name: "navbar",
+    noWrap: true,
+  }
+);
+
 Builder.registerComponent(
   dinamyc(() => import("./components/products/GridProducts")),
   {

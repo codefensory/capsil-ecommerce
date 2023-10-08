@@ -20,3 +20,33 @@ export const BagIcon: FC<{
     </svg>
   );
 };
+
+export const SimpleBag: FC<{
+  className?: string;
+  includeCircle?: boolean;
+}> = ({ className, includeCircle }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={25}
+      height={25}
+      viewBox="0 0 25 25"
+      fill="none"
+    >
+      <path
+        d="M5.03715 10.9713C5.30212 8.98412 6.99726 7.5 9.00207 7.5H15.9979C18.0027 7.5 19.6979 8.98412 19.9628 10.9713L20.8962 17.9713C21.2159 20.3693 19.3504 22.5 16.9313 22.5H8.06873C5.64958 22.5 3.7841 20.3693 4.10382 17.9713L5.03715 10.9713Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+      />
+      <path
+        d="M16.5 9.5V6.5C16.5 4.29086 14.7091 2.5 12.5 2.5V2.5C10.2909 2.5 8.5 4.29086 8.5 6.5L8.5 9.5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      {includeCircle && (
+        <circle cx="19.5" cy="6.5" r="4.5" fill="#89B964" stroke="white" />
+      )}
+    </svg>
+  );
+};
