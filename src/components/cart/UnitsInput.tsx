@@ -1,3 +1,5 @@
+// eslint-disable-next-line react-hooks/exhaustive-deps
+
 import { useMemo, useState } from "react";
 import { FC } from "react";
 import { debounce } from "~/utils/func";
@@ -20,7 +22,7 @@ export const UnitsInput: FC<UnitsInputProps> = ({
 
   const debouncedFunction = useMemo(() => {
     return updateQuantity ? debounce(updateQuantity, debounceMS) : () => {};
-  }, []);
+  }, [debounceMS]);
 
   useEffect(() => {
     if (updateQuantity) debouncedFunction(localValue);

@@ -19,7 +19,7 @@ export const GridProducts: FC<Props> = ({ title, smallTitle }) => {
       </div>
       <div className="grid mt-5  grid-cols-3 max-w-7xl m-auto">
         {products.map((pr) => (
-          <CardProduct product={pr} />
+          <CardProduct product={pr} key={pr.id} />
         ))}
       </div>
     </div>
