@@ -28,7 +28,7 @@ export const Navbar = () => {
 
   return (
     <div className="w-full fixed top-0 z-30 border-2 bg-capsil-bg py-2">
-      <div className="mx-auto max-w-5xl justify-around flex items-center">
+      <div className="mx-auto max-w-5xl justify-between flex items-center">
         <div>
           <Logo />
         </div>
