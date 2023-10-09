@@ -11,6 +11,11 @@ export const checkoutAtom = atomWithStorage<Checkout | null>(
   null
 );
 
+export const hasProductsInCheckoutAtom = atom((get) => {
+  const checkout = get(checkoutAtom);
+  return (checkout?.lineItems.length ?? 0) > 0;
+});
+
 const safeGetCheckout = async (get: Getter, set: Setter) => {
   const checkout = get(checkoutAtom);
   if (!checkout || !checkout.id) {

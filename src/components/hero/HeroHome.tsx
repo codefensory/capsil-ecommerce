@@ -17,7 +17,7 @@ export const HeroHome: FC<HeroHomeProps> = ({
 }) => {
   return (
     <div className="bg-capsil-bg">
-      <div className="max-w-7xl flex justify-center items-center mx-auto py-9">
+      <div className="max-w-7xl flex justify-center items-center mx-auto py-24">
         <div className="max-w-lg">
           <h1 className="text-5xl font-bold">{title}</h1>
           <p className="font-dmSans text-lg mt-2">{textContent}</p>

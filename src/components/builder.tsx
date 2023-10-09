@@ -1,7 +1,7 @@
 "use client";
 
 import { BuilderComponent, useIsPreviewing } from "@builder.io/react";
-import { BuilderContent, builder } from "@builder.io/sdk";
+import { Builder, BuilderContent, builder } from "@builder.io/sdk";
 import DefaultErrorPage from "next/error";
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY ?? "");

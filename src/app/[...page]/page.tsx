@@ -1,6 +1,9 @@
 import { RenderBuilderContent } from "~/components/builder";
 import builderio from "~/libs/builderio";
-
+import "../../builder-registry";
+import { getProducts } from "~/libs/shopify/eccomerce.sdk";
+import { JotaiHydratation } from "~/components/JotaiHydratation";
+import { Cart } from "~/components/cart";
 interface PageProps {
   params: {
     page: string[];
@@ -21,9 +24,12 @@ export default async function Page(props: PageProps) {
     // Convert the result to a promise
     .toPromise();
 
+  const products = await getProducts();
+
   return (
     <>
-      {/* Render the Builder page */}
+      <Cart />
+      <JotaiHydratation productsFromServer={products} />
       <RenderBuilderContent content={content} />
     </>
   );
