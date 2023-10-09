@@ -1,6 +1,6 @@
 import { RenderBuilderContent } from "../components/builder";
 import builderio from "~/libs/builderio";
-import { getProducts } from "~/lib/shopify/eccomerce.sdk";
+import { getProducts } from "~/libs/shopify/eccomerce.sdk";
 import { JotaiHydratation } from "../components/JotaiHydratation";
 import "../builder-registry";
 import { Cart } from "~/components/cart";
