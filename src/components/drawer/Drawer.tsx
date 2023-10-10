@@ -1,5 +1,5 @@
 import csx from "classnames";
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import { createPortal } from "react-dom";
 import { Close } from "../icons";
 type DrawerProps = {
@@ -15,16 +15,6 @@ export const Drawer: FC<DrawerProps> = ({
   children,
   includeOverlay = true,
 }) => {
-  const [state, setState] = useState(false);
-
-  useEffect(() => {
-    setState(true);
-  }, []);
-
-  if (!state) {
-    return null;
-  }
-
   return createPortal(
     <div>
       {includeOverlay && isOpen && (
