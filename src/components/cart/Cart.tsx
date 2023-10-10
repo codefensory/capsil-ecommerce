@@ -54,6 +54,8 @@ export const Cart = () => {
     );
   };
 
+  const isEmpty = items.length === 0;
+
   return (
     <Fragment>
       <div className="drawer-overlay z-50 bg-capsil-brown opacity-40 w-full fixed top-0 left-0 h-full"></div>
@@ -113,6 +115,11 @@ export const Cart = () => {
                     />
                   );
                 })}
+                {isEmpty && (
+                  <div className="text-gray-400 h-full  min-w-[310px] flex justify-center items-center ">
+                    <p className="text-2xl mt-9">Su carrito está vacio</p>
+                  </div>
+                )}
               </div>
             </div>
             <div className="flex font-dmSans text-sm gap-y-2 absolute   px-4 left-0 top-[78%]  mt-4 flex-col w-full">
@@ -133,10 +140,14 @@ export const Cart = () => {
                 onClick={() => {
                   window.open(checkout?.webUrl ?? "");
                 }}
+                className="mt-1"
+                disabled={isEmpty}
               >
                 Comprar
               </BaseButton>
-              <BaseButton variant="secondary">Venta por whatsApp</BaseButton>
+              <BaseButton disabled={isEmpty} variant="secondary">
+                Venta por whatsApp
+              </BaseButton>
             </div>
           </div>
         </div>
