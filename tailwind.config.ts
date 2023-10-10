@@ -12,6 +12,18 @@ const config: Config = {
         cormorat: ["Cormorant", "serif"],
         dmSans: ["DM Sans", "sans-serif"],
       },
+      screens: {
+        tablet: {
+          min: "641px",
+          max: "991px",
+        },
+        mobile: {
+          max: "640px",
+        },
+        toTable: {
+          max: "991px",
+        },
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -25,7 +37,7 @@ const config: Config = {
           bg: "#F7F5E8",
           green: "#89B964",
           brown: "#341A19",
-          gold: "#B98D58"
+          gold: "#B98D58",
         },
       },
     },

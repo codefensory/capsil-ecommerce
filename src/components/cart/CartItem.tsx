@@ -46,7 +46,6 @@ export const CartItem: FC<CartItemProps> = ({
         <div className="mt-2 px-3 grow">
           <p className="max-w-xs font-dmSans font-normal text-sm">{headLine}</p>
         </div>
-
         <div
           ref={hoverRef as any}
           className={csx("dropdown dropdown-end", {
