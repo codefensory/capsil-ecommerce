@@ -16,12 +16,16 @@ export const BaseButton: FC<BaseButtonProps> = ({
   return (
     <button
       {...props}
-      className={cx(props.className, {
-        "bg-capsil-green border-capsil-green border-2 text-white px-6 py-2":
-          variant === "primary",
-        "border-capsil-green border-2 text-capsil-green px-6 py-2":
-          variant === "secondary",
-      })}
+      className={cx(
+        props.className,
+        "px-6 py-2 tablet:px-4  toTable:text-base toTable:py-1",
+        {
+          "bg-capsil-green border-capsil-green border-2 text-white":
+            variant === "primary",
+          "border-capsil-green border-2 text-capsil-green":
+            variant === "secondary",
+        }
+      )}
     >
       <span>{children}</span>
     </button>

@@ -5,3 +5,4 @@ export * from "./Plus";
 export * from "./Dots";
 export * from "./Close";
 export * from "./Search";
+export * from "./Burguer";

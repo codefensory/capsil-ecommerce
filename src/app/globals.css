@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.icon svg {
+  @apply w-6 h-6 mobile:w-5 mobile:h-5;
+}
+
 .wrap-icon {
   @apply bg-black w-9 h-9 rounded-full flex justify-center items-center hover:scale-105;
 }

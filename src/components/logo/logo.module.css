@@ -1,10 +1,10 @@
 .lg {
-    @apply w-[246px] h-[123px]
+    @apply w-[246px] h-[123px] toTable:w-[180px] h-[100px]
 }
 .md {
     @apply w-[180px] h-[100px]
 }
 
 .sm {
-    @apply w-[120px] h-[60px]
+    @apply w-[120px] h-[60px] tablet:w-[90px] tablet:h-[50px] mobile:w-[80px] mobile:h-[40px]
 }
