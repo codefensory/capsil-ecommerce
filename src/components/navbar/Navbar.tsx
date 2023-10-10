@@ -8,9 +8,10 @@ import { hasProductsInCheckoutAtom } from "~/libs/shopify/atoms";
 import MobileDrawer from "./MobileDrawer";
 import { useIsOpenMenuAtom } from "./atoms";
 import { useItems } from "./use-items";
+import NextLink from "next/link";
+
 export const Navbar = () => {
   const { isThisRoute, items } = useItems();
-
   const hasProductsInCheckout = useAtomValue(hasProductsInCheckoutAtom);
 
   const isOpenMenuHandler = useIsOpenMenuAtom();
@@ -21,9 +22,9 @@ export const Navbar = () => {
     <div className="w-full fixed top-0 z-30 border-2 bg-capsil-bg py-2 toTable:py-1">
       <MobileDrawer />
       <div className="mx-auto max-w-5xl toTable:px-4 justify-between flex items-center">
-        <div>
+        <NextLink href={"/"}>
           <Logo />
-        </div>
+        </NextLink>
         <div className="flex gap-x-4 mobile:hidden">
           {items.map((item, idx) => (
             <div key={idx}>

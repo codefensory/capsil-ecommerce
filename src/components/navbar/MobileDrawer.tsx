@@ -14,6 +14,7 @@ const MobileDrawer = () => {
             className={csx("my-3", {
               "border-b-2 border-b-capsil-green pb-1": isThisRoute(item.path),
             })}
+            key={item.path}
           >
             <a href={item.path}>{item.text}</a>
           </li>
