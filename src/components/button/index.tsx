@@ -18,7 +18,7 @@ export const BaseButton: FC<BaseButtonProps> = ({
       {...props}
       className={cx(
         props.className,
-        "px-6 py-2 tablet:px-4  toTable:text-base toTable:py-1 ",
+        "px-6 py-2 tablet:px-4  toTable:text-base toTable:py-1",
         {
           "bg-capsil-green border-capsil-green border-2 text-white":
             variant === "primary",
