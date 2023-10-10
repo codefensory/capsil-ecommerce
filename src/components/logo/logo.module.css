@@ -6,5 +6,5 @@
 }
 
 .sm {
-    @apply w-[120px] h-[60px]
+    @apply w-[120px] h-[60px] tablet:w-[90px] tablet:h-[50px] mobile:w-[80px] mobile:h-[40px]
 }
