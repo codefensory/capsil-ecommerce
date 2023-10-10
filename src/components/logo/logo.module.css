@@ -1,5 +1,5 @@
 .lg {
-    @apply w-[246px] h-[123px]
+    @apply w-[246px] h-[123px] toTable:w-[180px] h-[100px]
 }
 .md {
     @apply w-[180px] h-[100px]
