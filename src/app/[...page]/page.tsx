@@ -4,6 +4,7 @@ import "../../builder-registry";
 import { getProducts } from "~/libs/shopify/eccomerce.sdk";
 import { JotaiHydratation } from "~/components/JotaiHydratation";
 import { Cart } from "~/components/cart";
+
 interface PageProps {
   params: {
     page: string[];

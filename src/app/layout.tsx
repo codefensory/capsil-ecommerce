@@ -2,8 +2,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "CapSil eccomerce apps",
-  description: "CapSil eccomerce apps",
+  title: "CapSil eccomerce",
+  description: "CapSil eccomerce",
 };
 
 export default async function RootLayout({
@@ -26,7 +26,7 @@ export default async function RootLayout({
         />
       </head>
       <body>
-        <div className="bg-capsil-bg font-cormorat text-black">{children}</div>
+        <div className="">{children}</div>
       </body>
     </html>
   );
